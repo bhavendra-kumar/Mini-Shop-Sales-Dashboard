@@ -1,0 +1,10 @@
+{
+  "name": "b-shop",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce sales dashboard",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}

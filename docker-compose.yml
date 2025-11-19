@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6.0
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    restart: on-failure
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/b-shop
+      - PORT=4000
+    ports:
+      - '4000:4000'
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    restart: on-failure
+    ports:
+      - '5173:80'
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
